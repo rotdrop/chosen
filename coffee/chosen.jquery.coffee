@@ -155,6 +155,7 @@ class Chosen extends AbstractChosen
     if delta?
       evt.preventDefault()
       delta = delta * 40 if evt.type is 'DOMMouseScroll'
+      delta = delta * 4
       @search_results.scrollTop(delta + @search_results.scrollTop())
 
   blur_test: (evt) ->
