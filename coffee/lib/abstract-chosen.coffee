@@ -3,6 +3,7 @@ class AbstractChosen
   constructor: (@form_field, @options={}) ->
     return unless AbstractChosen.browser_is_supported()
     @is_multiple = @form_field.multiple
+    return unless (not @is_multiple) or AbstractChosen.browser_multiple_is_supported()
     this.set_default_text()
     this.set_default_values()
 
@@ -376,7 +377,15 @@ class AbstractChosen
       return false
     return true
 
+  @browser_multiple_is_supported: ->
+    if window.navigator.appName == "Microsoft Internet Explorer"
+      return document.documentMode >= 8
+    if /iP(od|hone)/i.test(window.navigator.userAgent)
+      return false
+    if /Android/i.test(window.navigator.userAgent)
+      return false if /Mobile/i.test(window.navigator.userAgent)
+    return true
+
   @default_multiple_text: "Select Some Options"
   @default_single_text: "Select an Option"
   @default_no_result_text: "No results match"
-

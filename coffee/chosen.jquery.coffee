@@ -6,6 +6,7 @@ $.fn.extend({
     # Continue on if running IE document type but in compatibility mode
     return this unless AbstractChosen.browser_is_supported()
     this.each (input_field) ->
+      return unless (not input_field.multiple) or AbstractChosen.browser_multiple_is_supported()
       $this = $ this
       chosen = $this.data('chosen')
       if options is 'destroy'
