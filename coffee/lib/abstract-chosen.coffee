@@ -143,6 +143,7 @@ class AbstractChosen
     this.result_clear_highlight()
     this.results_build()
     this.winnow_results() if @results_showing
+    this.on_update()
 
   reset_single_select_options: () ->
     for result in @results_data

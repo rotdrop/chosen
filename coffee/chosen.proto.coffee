@@ -45,8 +45,13 @@ class @Chosen extends AbstractChosen
     this.set_tab_index()
     this.set_label_behavior()
 
+    this.on_update()
+
   on_ready: ->
     @form_field.fire("chosen:ready", {chosen: this})
+
+  on_update: ->
+    @form_field.fire("chosen:update", {chosen: this})
 
   register_observers: ->
     @container.observe "touchstart", (evt) => this.container_mousedown(evt)
@@ -324,6 +329,8 @@ class @Chosen extends AbstractChosen
 
       this.search_field_scale()
 
+      this.on_update()
+
   results_reset: ->
     this.reset_single_select_options()
     @form_field.options[0].selected = true
@@ -332,6 +339,7 @@ class @Chosen extends AbstractChosen
     this.results_reset_cleanup()
     this.trigger_form_field_change()
     this.results_hide() if @active_field
+    this.on_update()
 
   results_reset_cleanup: ->
     @current_selectedIndex = @form_field.selectedIndex
@@ -381,6 +389,8 @@ class @Chosen extends AbstractChosen
       evt.preventDefault()
 
       this.search_field_scale()
+
+      this.on_update()
 
   single_set_selected_text: (text=@default_text) ->
     if text is @default_text
