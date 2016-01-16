@@ -154,7 +154,7 @@ class @Chosen extends AbstractChosen
     delta = evt.deltaY or -evt.wheelDelta or evt.detail
     if delta?
       evt.preventDefault()
-      delta = delta * 40 if evt.type is 'DOMMouseScroll'
+      # delta = delta * 40 if evt.type is 'DOMMouseScroll'
       delta = delta * 4
       @search_results.scrollTop = delta + @search_results.scrollTop
 
