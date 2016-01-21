@@ -12,11 +12,15 @@ class SelectParser
 
   add_group: (group) ->
     group_position = @parsed.length
+
+    title = group.title if group.title
+    title = group.getAttribute("data-original-title") if not title
+
     @parsed.push
       array_index: group_position
       group: true
-      label: group.label
-      title: group.title if group.title
+      label: this.escapeExpression(group.label)
+      title: title
       children: 0
       disabled: group.disabled,
       classes: group.className
@@ -27,13 +31,17 @@ class SelectParser
       if option.text != ""
         if group_position?
           @parsed[group_position].children += 1
+
+        title = option.title if option.title
+        title = option.getAttribute("data-original-title") if not title
+        
         @parsed.push
           array_index: @parsed.length
           options_index: @options_index
           value: option.value
           text: option.text
           html: option.innerHTML
-          title: option.title if option.title
+          title: title
           selected: option.selected
           disabled: if group_disabled is true then group_disabled else option.disabled
           group_array_index: group_position
