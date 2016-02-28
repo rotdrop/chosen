@@ -249,6 +249,8 @@ class Chosen extends AbstractChosen
       @form_field_jq.trigger("chosen:maxselected", {chosen: this})
       return false
 
+    @form_field_jq.trigger("chosen:before_showing_dropdown", {chosen: this})
+
     @container.addClass "chosen-with-drop"
     @results_showing = true
 
@@ -263,6 +265,8 @@ class Chosen extends AbstractChosen
 
   results_hide: ->
     if @results_showing
+      @form_field_jq.trigger("chosen:before_hiding_dropdown", {chosen: this})
+
       this.result_clear_highlight()
 
       @container.removeClass "chosen-with-drop"
