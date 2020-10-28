@@ -19,7 +19,7 @@ class SelectParser
     @parsed.push
       array_index: group_position
       group: true
-      label: this.escapeExpression(group.label)
+      label: this.escape_html(group.label)
       title: title
       children: 0
       disabled: group.disabled,
