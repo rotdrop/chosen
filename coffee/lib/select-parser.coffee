@@ -19,7 +19,7 @@ class SelectParser
     @parsed.push
       array_index: group_position
       group: true
-      label: this.escape_html(group.label)
+      label: group.label
       title: title
       children: 0
       disabled: group.disabled,
@@ -34,7 +34,7 @@ class SelectParser
 
         title = option.title if option.title
         title = option.getAttribute("data-original-title") if not title
-        
+
         @parsed.push
           array_index: @parsed.length
           options_index: @options_index
