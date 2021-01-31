@@ -1,8 +1,8 @@
 .DS_Store
 node_modules
 .project
-public/*.js
-public/*.css
+public/*.min.js
+public/*.min.css
 public/*.json
 public/LICENSE.md
 chosen*.zip
